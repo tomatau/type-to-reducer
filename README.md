@@ -1,3 +1,5 @@
+[![Circle CI](https://circleci.com/gh/tomatau/type-to-reducer/tree/master.svg?style=svg)](https://circleci.com/gh/tomatau/type-to-reducer/tree/master)
+
 # type-to-reducer
 
 Create reducer functions based on an object keyed by action types
