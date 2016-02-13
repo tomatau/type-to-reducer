@@ -1,0 +1,10 @@
+{
+  "folders":
+  [
+    {
+      "name": "type-to-reducer",
+      "follow_symlinks": true,
+      "path": "."
+    }
+  ]
+}

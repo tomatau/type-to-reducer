@@ -1,0 +1,16 @@
+machine:
+  timezone:
+    Europe/London
+  node:
+    version: v5
+
+dependencies:
+  cache_directories:
+    - node_modules
+  post:
+    - npm run build
+
+test:
+  override:
+    - npm run lint
+    - npm run test -- --reporter spec
