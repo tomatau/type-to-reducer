@@ -1,0 +1,20 @@
+{
+  "extends": "eslint-config-rackt",
+  "env": {
+    "browser": true,
+    "mocha": true,
+    "node": true
+  },
+  "rules": {
+    "comma-dangle": [2, "always-multiline"],
+    "space-before-function-paren": [1, "never"]
+  },
+  "plugins": [],
+  "globals": {
+    "expect": true,
+    "global": true,
+    "window": true,
+    "sinon": true,
+    "_": true,
+  }
+}

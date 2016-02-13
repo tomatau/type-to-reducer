@@ -1,0 +1,10 @@
+node_modules
+src
+.babelrc
+.editorconfig
+.eslintignore
+.gitignore
+.nvmrc
+circle.yml
+README.md
+*.sublime-project
