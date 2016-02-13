@@ -2,6 +2,7 @@ node_modules
 src
 .babelrc
 .editorconfig
+.eslintrc
 .eslintignore
 .gitignore
 .nvmrc
