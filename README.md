@@ -27,11 +27,11 @@ const initialState = {
 export const reducer = typeToReducer({
   [GET]: (state, action) => ({
     ...state,
-    data: getFoo(action)
+    data: action.payload
   }),
   [UPDATE]: (state, action) => ({
     ...state,
-    data: getFoo(action)
+    data: action.payload
   })
 }, initialState)
 ```
