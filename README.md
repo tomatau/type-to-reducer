@@ -20,22 +20,19 @@ import { GET, UPDATE } from 'app/actions/foo'
 
 const initialState = {
   data: null,
-  isLoading: false,
-  error: false,
+  isPending: false,
+  error: false
 }
 
-export const fooReducers = typeToReducer({
-
+export const reducer = typeToReducer({
   [GET]: (state, action) => ({
     ...state,
-    data: getFoo(action),
+    data: getFoo(action)
   }),
-
   [UPDATE]: (state, action) => ({
     ...state,
-    data: getFoo(action),
-  }),
-
+    data: getFoo(action)
+  })
 }, initialState)
 ```
 
@@ -47,16 +44,15 @@ import { API_FETCH } from 'app/actions/bar'
 
 const initialState = {
   data: null,
-  isLoading: false,
-  error: false,
+  isPending: false,
+  error: false
 }
 
-export const barReducers = typeToReducer({
-
+export const reducer = typeToReducer({
   [ API_FETCH ]: {
     PENDING: () => ({
       ...initialState,
-      isPending: true,
+      isPending: true
     }),
     REJECTED: (state, action) => ({
       ...initialState,
@@ -64,9 +60,8 @@ export const barReducers = typeToReducer({
     }),
     FULFILLED: (state, action) => ({
       ...initialState,
-      data: getBar(action),
-    }),
-  },
-
+      data: action.payload
+    })
+  }
 }, initialState)
 ```
