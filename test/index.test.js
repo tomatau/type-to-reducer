@@ -1,6 +1,6 @@
 import chai, { expect } from 'chai'
 import sinon from 'sinon'
-import typeToReducer from './index'
+import typeToReducer from '../src/index'
 
 chai.use(require('sinon-chai'))
 

@@ -4,7 +4,7 @@
   "description": "Create reducer functions based on an object keyed by action types",
   "main": "lib/index.js",
   "scripts": {
-    "test": "mocha src/index.test.js --ui bdd --compilers js:babel-register",
+    "test": "mocha test/index.test.js --ui bdd --compilers js:babel-register",
     "lint": "eslint . --ext .js",
     "build": "babel src -d lib --ignore *.test.js",
     "prepublish": "npm run build"
