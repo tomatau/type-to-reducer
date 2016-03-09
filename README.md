@@ -15,7 +15,7 @@ Differences being that this only exposes the one function and allows nesting - A
 `npm install type-to-reducer --save`
 
 ```js
-import { typeToReducer } from 'type-to-reducer'
+import typeToReducer from 'type-to-reducer'
 import { GET, UPDATE } from 'app/actions/foo'
 
 const initialState = {
@@ -39,7 +39,7 @@ export const reducer = typeToReducer({
 Can also be used to group reducers by prefix.
 
 ```js
-import { typeToReducer } from 'type-to-reducer'
+import typeToReducer from 'type-to-reducer'
 import { API_FETCH } from 'app/actions/bar'
 
 const initialState = {
