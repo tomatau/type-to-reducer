@@ -1,6 +1,6 @@
 {
   "name": "type-to-reducer",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Create reducer functions based on an object keyed by action types",
   "main": "lib/index.js",
   "scripts": {
