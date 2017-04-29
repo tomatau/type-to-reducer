@@ -2,6 +2,8 @@
 
 # type-to-reducer
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/tomatau/type-to-reducer.svg)](https://greenkeeper.io/)
+
 Create reducer functions based on an object keyed by action types
 
 ## Why?
