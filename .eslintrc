@@ -1,13 +1,49 @@
 {
-  "extends": "eslint-config-rackt",
   "env": {
     "browser": true,
     "mocha": true,
-    "node": true
+    "node": true,
+    "es6": true
+  },
+  "parser": "babel-eslint",
+  "parserOptions": {
+    "sourceType": "module",
   },
   "rules": {
-    "comma-dangle": [2, "always-multiline"],
-    "space-before-function-paren": [1, "never"]
+    "array-bracket-spacing": [2, "always"],
+    "comma-dangle": [1, "always-multiline"],
+    "comma-spacing": ["error", { "before": false, "after": true }],
+    "computed-property-spacing": ["error", "never"],
+    "dot-location": [2, "property"],
+    "eol-last": 2,
+    "eqeqeq": [2, "allow-null"],
+    "indent": ["error", 2, { "MemberExpression": 1, "SwitchCase": 1 }],
+    "jsx-quotes": [2, "prefer-single"],
+    "keyword-spacing": 2,
+    "max-params": 2,
+    "no-lonely-if": 2,
+    "no-mixed-operators": 2,
+    "no-multi-spaces": 2,
+    "no-multiple-empty-lines": 2,
+    "no-return-await": 2,
+    "no-template-curly-in-string": 2,
+    "no-undef": 2,
+    "no-unexpected-multiline": 2,
+    "no-unsafe-negation": 2,
+    "no-unused-vars": 2,
+    "object-curly-spacing": [2, "always"],
+    "operator-linebreak": ["error", "before"],
+    "padded-blocks": ["error", "never"],
+    "quotes": ["error", "single", { "allowTemplateLiterals": true }],
+    "require-yield": 0,
+    "semi": [2, "never"],
+    "space-before-blocks": [2, "always"],
+    "space-before-function-paren": ["error", {
+      "anonymous": "never",
+      "named": "never",
+      "asyncArrow": "always"
+    }],
+    "strict": 0
   },
   "plugins": [],
   "globals": {
