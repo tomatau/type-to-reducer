@@ -36,6 +36,6 @@
     "mocha": "^5.0.0",
     "pre-push": "^0.1.1",
     "sinon": "^4.0.2",
-    "sinon-chai": "^2.13.0"
+    "sinon-chai": "^3.0.0"
   }
 }
