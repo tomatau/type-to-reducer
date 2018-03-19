@@ -67,3 +67,37 @@ export const reducer = typeToReducer({
   }
 }, initialState)
 ```
+
+## Custom Type Delimiter
+
+You can add a custom type delimiter instead of the default `'_'`.
+
+This will set it for every reducer you create after the custom delimiter is set, yes a dirty stateful function. This is for convenience so you can set it for your whole project up front and not to pollute the main function abstraction for rare settings.
+
+```js
+import typeToReducer, {setTypeDelimiter} from 'type-to-reducer'
+import { API_FETCH } from 'app/actions/bar'
+
+const initialState = {
+  data: null,
+  isPending: false,
+}
+
+setTypeDelimiter('@_@')
+
+export const reducer = typeToReducer({
+  [ API_FETCH ]: {
+    PENDING: () => ({
+      ...initialState,
+      isPending: true
+    }),
+  }
+}, initialState)
+
+// Then use the delimiter in your action type
+reducer(someState, {
+  type: API_FETCH + '@_@' + 'PENDING'
+})
+```
+
+This function may change to something that will scale better such as `setOptions(options)` to support more settings if more pop up.

@@ -1,5 +1,9 @@
+let typeDelimiter = '_'
+
+export const setTypeDelimiter = customTypeDelimiter => typeDelimiter = customTypeDelimiter
+
 export default function typeToReducer(reducerMap, initialState) {
-  const makeType = (prefix, type) => prefix.concat(type).join('_')
+  const makeType = (prefix, type) => prefix.concat(type).join(typeDelimiter)
 
   const iterator = (reducers, initial={}, prefix=[]) => {
     const reducerTypes = Object.keys(reducers || {})

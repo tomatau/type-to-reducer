@@ -1,6 +1,6 @@
 import chai, { expect } from 'chai'
 import sinon from 'sinon'
-import typeToReducer from '../src/index'
+import typeToReducer, { setTypeDelimiter } from '../src/index'
 
 chai.use(require('sinon-chai'))
 
@@ -82,6 +82,33 @@ describe('Handle Actions', function() {
     it('calls deeply nested reducers with matching prefixed_type', ()=> {
       const state = { given: 'state' }
       const fooDerpBarAction = { type: 'FOO_DERP_BAR' }
+      this.reducer(state, fooDerpBarAction)
+      expect(this.reducerConfig.FOO.DERP.BAR).to.have.callCount(1)
+      expect(this.reducerConfig.FOO.HERP).to.have.callCount(0)
+      expect(this.reducerConfig.FOO.DERP.BAR).to.have.been.calledWith(
+        state, fooDerpBarAction
+      )
+    })
+  })
+
+  context('Given A Custom Type Delimiter Nested Reducer', ()=> {
+    const initialState = { initial: 'state' }
+    beforeEach(()=> {
+      this.reducerConfig = {
+        FOO: {
+          'HERP': sinon.spy(() => ({ state: 'foo_herp' })),
+          'DERP': {
+            'BAR': sinon.spy(() => ({ state: 'foo_derp_bar' })),
+          },
+        },
+      }
+      setTypeDelimiter('|')
+      this.reducer = typeToReducer(this.reducerConfig, initialState)
+    })
+
+    it('calls deeply nested reducers with matching prefixed_type', ()=> {
+      const state = { given: 'state' }
+      const fooDerpBarAction = { type: 'FOO|DERP|BAR' }
       this.reducer(state, fooDerpBarAction)
       expect(this.reducerConfig.FOO.DERP.BAR).to.have.callCount(1)
       expect(this.reducerConfig.FOO.HERP).to.have.callCount(0)
