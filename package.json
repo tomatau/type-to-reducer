@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
   "scripts": {
-    "test": "mocha test/index.test.js --ui bdd --compilers js:babel-register",
+    "test": "mocha test/index.test.js --ui bdd --require babel-register",
     "lint": "eslint . --ext .js",
     "build": "babel src -d lib --ignore *.test.js && cp -f src/index.d.ts lib/index.d.ts",
     "prepublish": "npm run build"
