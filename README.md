@@ -4,17 +4,23 @@
 
 [![Greenkeeper badge](https://badges.greenkeeper.io/tomatau/type-to-reducer.svg)](https://greenkeeper.io/)
 
-Create reducer functions based on an object keyed by action types
+This module provides a function `typeToReducer`, which accepts an object (`reducerMap`) and returns a reducer function composing other reducer functions described by the `reducerMap`.
 
 ## Why?
 
-Pretty much the same as the `handleActions` function in https://github.com/acdlite/redux-actions
-
-Differences being that this only exposes the one function and allows nesting - API suggested by https://github.com/pburtchaell/redux-promise-middleware/issues/35#issuecomment-164650859
+This is pretty much the same as the `handleActions` function you can find in https://github.com/acdlite/redux-actions. The differences being, `type-to-reducer` only exposes the function as a default, and allows nesting of the `reducerMap` object.
 
 ## Usage
 
 `npm install type-to-reducer --save`
+
+The `reducerMap` you supply to the function will have keys that correspond to dispatched action types and the values for those keys will be reducer functions. When the returned reducer function is called with state and an action object, the action's type will be matched against the previously provided `reducerMap` keys, if a match is found, the key's value (the reducer function) will be invoked with the store's state and the action.
+
+Also, you can describe an initial state with the second argument to `typeToReducer`.
+
+Oh and you can also set `reducerMap`s as the values too, these objects will be nested instances of the same shaped object you supplied to `typeToReducer`.
+
+If that sounded a bit complicated, the example below should make it clearer. NB, it helps if you're familiar with redux.
 
 ```js
 import typeToReducer from 'type-to-reducer'
@@ -26,7 +32,9 @@ const initialState = {
   error: false
 }
 
-export const reducer = typeToReducer({
+// supply the reducerMap object
+export const myReducer = typeToReducer({
+  // e.g. GET === 'SOME_ACTION_TYPE_STRING_FOR_GET'
   [GET]: (state, action) => ({
     ...state,
     data: action.payload
@@ -38,7 +46,20 @@ export const reducer = typeToReducer({
 }, initialState)
 ```
 
-Can also be used to group reducers by prefix.
+Then the `myReducer` would be used like so:
+
+```js
+let state = { foo: 'bar' }
+
+let newState = myReducer(state, {
+  type: GET,
+  payload: `an action's payload.`
+})
+
+// newState will deep equal { foo: 'bar', data: `an action's payload.` }
+```
+
+Group reducers by a prefix when objects are nested.
 
 ```js
 import typeToReducer from 'type-to-reducer'
@@ -50,7 +71,7 @@ const initialState = {
   error: false
 }
 
-export const reducer = typeToReducer({
+export const myReducer = typeToReducer({
   [ API_FETCH ]: {
     PENDING: () => ({
       ...initialState,
@@ -66,6 +87,15 @@ export const reducer = typeToReducer({
     })
   }
 }, initialState)
+
+// usage
+let previousState = Whatever;
+
+let newState = myReducer(previousState, {
+  type: API_FETCH + '_' + PENDING,
+})
+
+// newState shallow deeply equals { isPending: true }
 ```
 
 ## Custom Type Delimiter
@@ -85,7 +115,7 @@ const initialState = {
 
 setTypeDelimiter('@_@')
 
-export const reducer = typeToReducer({
+export const myReducer = typeToReducer({
   [ API_FETCH ]: {
     PENDING: () => ({
       ...initialState,
@@ -95,9 +125,7 @@ export const reducer = typeToReducer({
 }, initialState)
 
 // Then use the delimiter in your action type
-reducer(someState, {
-  type: API_FETCH + '@_@' + 'PENDING'
+myReducer(someState, {
+  type: API_FETCH + '@_@' + PENDING,
 })
 ```
-
-This function may change to something that will scale better such as `setOptions(options)` to support more settings if more pop up.
