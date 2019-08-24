@@ -30,12 +30,12 @@
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.0",
     "babel-register": "^6.26.0",
-    "chai": "^4.0.2",
+    "chai": "^4.2.0",
     "eslint": "^4.6.0",
     "eslint-config-rackt": "^1.1.1",
-    "mocha": "^5.0.0",
+    "mocha": "^6.2.0",
     "pre-push": "^0.1.1",
     "sinon": "^7.4.1",
-    "sinon-chai": "^3.0.0"
+    "sinon-chai": "^3.3.0"
   }
 }
