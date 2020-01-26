@@ -33,7 +33,7 @@
     "chai": "^4.2.0",
     "eslint": "^6.2.2",
     "eslint-config-rackt": "^1.1.1",
-    "mocha": "^6.2.0",
+    "mocha": "^7.0.1",
     "pre-push": "^0.1.1",
     "sinon": "^8.0.0",
     "sinon-chai": "^3.3.0"
